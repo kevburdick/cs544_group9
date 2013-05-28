@@ -1,0 +1,51 @@
+
+#### Included Files ####
+README    # This file
+Makefile  # Used to build client and test server 
+message   # Directory that holds all the classes for the messages
+test      # Directory that holds all the classes for the tests including a server class  
+
+
+#### Environment ####
+Compiler: java version "1.6.0_27"
+
+
+#### Instructions ####
+To compile:
+in client directory type "make"
+
+To run test server:
+type "java -cp ./test:. Server" in  client directory
+
+To run client:
+type "java client" in client directory
+
+
+#### Code Design ####
+Code is broken up by message directory, test directory, client, CTP, and Transport. 
+Below is a brief description. 
+of the code organization for the client application. 
+1) The transport file and class defines the transport layer of the protocol in this 
+case the TCP socket. 
+2) The client file holds that main method and entry into the application
+3) The CTP file defines the state machine, DFA, for the CTP protocol and provides an 
+interface to the upper layer.
+3) The message directory includes all the message classes including the base Message 
+class that all other message types inherit from.
+4) The test directory contains the test server application to support testing of 
+the client application.   
+
+#### Testing ####
+1) Open two shells one for server and one for client
+2) Client and Server file have a series of messages that support a scenario
+3) run Server and run Client(see commands above)
+4) Should execute a series of events and pass messages back and forth and then exit
+
+
+
+
+
+
+
+
+
