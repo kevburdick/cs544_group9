@@ -8,6 +8,7 @@ CLASSES = \
 		Client.java \
 		Transport.java \
       CTP.java \
+		StateMachine.java\
       message/Ack.java \
 		message/AckConnect.java \
       message/Close.java \
