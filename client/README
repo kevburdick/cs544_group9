@@ -1,9 +1,19 @@
+Group 9:
 
-#### Included Files ####
-README    # This file
-Makefile  # Used to build client and test server 
-message   # Directory that holds all the classes for the messages
-test      # Directory that holds all the classes for the tests including a server class  
+Kevin Burdick (kmb474)
+Kevin Chang (kc626)
+Michael Conway (mjc342)
+Haike Yuan (hy332)
+CS544, Spring 2013
+
+
+
+#### Included Directories and Files ####
+README              # This file
+Makefile            # Used to build client and test server 
+base directory      # Directory that holds the CTP protocol and the Transport layer(TCP socket) 
+message             # Directory that holds all the classes for the messages
+test                # Directory that holds all the classes for the tests including a server class  
 
 
 #### Environment ####
@@ -22,17 +32,29 @@ type "java client" in client directory
 
 
 #### Code Design ####
-Code is broken up by message directory, test directory, client, CTP, and Transport. 
-Below is a brief description. 
-of the code organization for the client application. 
-1) The transport file and class defines the transport layer of the protocol in this 
-case the TCP socket. 
-2) The client file holds that main method and entry into the application
-3) The CTP file defines the state machine, DFA, for the CTP protocol and provides an 
-interface to the upper layer.
+Code is broken up by message directory, test directory, and base clinet directory. Below is a brief description. of the code organization for the client application. 
+
+Base Directory
+1) The transport class defines the transport layer of the protocol in this case the TCP socket. 
+2) The client file holds that main method and entry into the application and represents the application layer.
+3) The CTP file, StateMachine, and CTPResponse defines the CTP protocol. Where CTP.java is the sublayer between the 
+Application layer and the state machine matches the DFA. The CTPResponse class provides a container for status and 
+application information going back the the Applciation layer. 
+
+Overview: 
+
+client.java       Application Layer
+-----------------------------------
+CTP.java                 CTP Layer 
+
+StateMachine.java
+-----------------------------------
+Transport.java       Transport Layer 
+
+
 3) The message directory includes all the message classes including the base Message 
-class that all other message types inherit from.
-4) The test directory contains the test server application to support testing of 
+class that all other message types inherit from this base class.
+4) The test directory contains the test server application to support developement and testing of 
 the client application.   
 
 #### Testing ####
@@ -40,8 +62,6 @@ the client application.
 2) Client and Server file have a series of messages that support a scenario
 3) run Server and run Client(see commands above)
 4) Should execute a series of events and pass messages back and forth and then exit
-
-
 
 
 
