@@ -33,22 +33,35 @@ add_option(options_t op, const char *label, const char *value)
     op.len += valuelen;
 }
 
-options_t
-parse_options(const char *raw_options, size_t len)
+int
+parse_options(char *raw_options, size_t len, options_t *op)
 {
-    options_t op;
-    if (!(op.a = malloc(len)))
-        error(); // TODO
-    memcpy(op.a, raw_options, len);
-    op.len = len;
-    op._allocated = len;
-    return op;
+    // check option format
+    int num_null = 0;
+    const char *p;
+    for (p = raw_options; p < raw_options + len; ++p)
+        if (!*p)
+            ++num_null;
+    // if last char isn't null, or there's an odd number of nulls, invalid
+    if (p != NULL && (*(p-1) || num_null % 2))
+        return -1;
+
+    //if (!(op->a = malloc(len)))
+    //    error(); // TODO
+    //memcpy(op->a, raw_options, len);
+    op->a = raw_options;
+    op->len = len;
+    op->_allocated = len;
+
+    return 0;
 }
 
 size_t
 print_options(options_t op, char **dest)
 {
     *dest = malloc(op.len);
+    if (*dest == NULL)
+        error(); // TODO
     memcpy(*dest, op.a, op.len);
     return op.len;
 }
