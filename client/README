@@ -28,18 +28,20 @@ To run test server:
 type "java -cp ./test:. Server" in  client directory
 
 To run client:
-type "java client" in client directory
+type "java client <IPAddress>"  or 
+     "java client <hostname>"
 
 
 #### Code Design ####
-Code is broken up by message directory, test directory, and base clinet directory. Below is a brief description. of the code organization for the client application. 
+Code is broken up by message directory, test directory, and base client directory. Below is a brief description of 
+the code organization for the client application. 
 
 Base Directory
 1) The transport class defines the transport layer of the protocol in this case the TCP socket. 
 2) The client file holds that main method and entry into the application and represents the application layer.
 3) The CTP file, StateMachine, and CTPResponse defines the CTP protocol. Where CTP.java is the sublayer between the 
-Application layer and the state machine matches the DFA. The CTPResponse class provides a container for status and 
-application information going back the the Applciation layer. 
+Application layer and the state machine. The StateMachine class is the implementation of the DFA. The CTPResponse 
+class provides a container for status and application information going back the the Applciation layer. 
 
 Overview: 
 
@@ -52,16 +54,19 @@ StateMachine.java
 Transport.java       Transport Layer 
 
 
-3) The message directory includes all the message classes including the base Message 
+3) The message directory includes all the message classes including a base Message 
 class that all other message types inherit from this base class.
 4) The test directory contains the test server application to support developement and testing of 
 the client application.   
 
 #### Testing ####
-1) Open two shells one for server and one for client
-2) Client and Server file have a series of messages that support a scenario
+1) Open two shells one for server stub and one for client
+2) Client and Server file have a series of messages that support a regression test scenario
 3) run Server and run Client(see commands above)
-4) Should execute a series of events and pass messages back and forth and then exit
+4) Should execute a series of messages and pass messages back and forth and then exit. Note 
+that an error message back to the client is part of the test were the client attempts to send an invalid
+message during a state. In this case an edit message when the client does not have the lock.
+ 
 
 
 
