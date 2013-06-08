@@ -11,7 +11,8 @@ options_t new_options();
 
 void add_option(options_t op, const char *label, const char *value);
 
-options_t parse_options(const char *raw_options, size_t len);
+/* -1 for error (malformed), 0 for success */
+int parse_options(char *raw_options, size_t len, options_t *op);
 
 /* Result must be free()d by user */
 size_t print_options(options_t op, char **dest);
