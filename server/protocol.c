@@ -148,7 +148,7 @@ Open_REQCONTENTS(client_t *client, textbuf *buf, CTP_head_t head)
     for (chunk = 0; chunk < numChunks; ++chunk) {
         char databuf[CHUNKSIZE]; /* TODO consider placement */
         contents.pos = pos + CHUNKSIZE * chunk;
-        contents.datalen = tbread(buf, databuf, CHUNKSIZE);
+        contents.datalen = tbread(buf, databuf, contents.pos, CHUNKSIZE);
         contents.data = databuf;
         rv = send_CONTENTS(client->sockfd, contents);
         if (rv < 1)
@@ -247,13 +247,13 @@ Locked_EDIT(client_t *client, textbuf *buf, CTP_head_t head)
 
     switch (mesg.edit_action) {
         case INS:
-            rv = overwrite(buf, mesg.pos, 0, mesg.data, mesg.datalen);
+            rv = tboverwrite(buf, mesg.pos, 0, mesg.data, mesg.datalen);
             break;
         case OVR:
-            rv = overwrite(buf, mesg.pos, mesg.len, mesg.data, mesg.datalen);
+            rv = tboverwrite(buf, mesg.pos, mesg.len, mesg.data, mesg.datalen);
             break;
         case DEL:
-            rv = overwrite(buf, mesg.pos, mesg.len, NULL, 0);
+            rv = tboverwrite(buf, mesg.pos, mesg.len, NULL, 0);
             break;
     }
 
