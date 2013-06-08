@@ -1,3 +1,5 @@
+#include "textbuf.h"
+
 /* STATES */
 typedef enum state {
     Init,

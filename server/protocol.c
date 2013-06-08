@@ -133,18 +133,18 @@ Open_REQCONTENTS(client_t *client, textbuf *buf, CTP_head_t head)
 
     /* Len of 0 -> until end of file */
     if (mesg.len == 0)
-        mesg.len = buf->len;
+        mesg.len = buf->size;
 
     /* cap pos and len to buffer size */
-    unsigned int pos = MIN(mesg.pos, buf->len);
-    unsigned int len = MIN(mesg.len, buf->len - pos);
+    unsigned int pos = MIN(mesg.pos, buf->size);
+    unsigned int len = MIN(mesg.len, buf->size - pos);
 
     free_mesg(mesg);
 
     unsigned int chunk, numChunks = len / CHUNKSIZE + 1;
 
     CTP_CONTENTS_t contents;
-    contents.totallen = buf->len;
+    contents.totallen = buf->size;
     for (chunk = 0; chunk < numChunks; ++chunk) {
         char databuf[CHUNKSIZE]; /* TODO consider placement */
         contents.pos = pos + CHUNKSIZE * chunk;
