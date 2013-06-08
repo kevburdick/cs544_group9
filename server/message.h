@@ -99,11 +99,19 @@ typedef struct __attribute__ ((__packed__)) CTP_EDIT {
     char *data;
 } CTP_EDIT_t;
 
-/* returns 1 on success, 0 on close, -1 on error */
+/* The following return 1 on success, 0 on close, -1 on error */
 int recv_head(int sockfd, struct CTP_head *head);
-
 int recv_mesg(int sockfd, void *dest, CTP_head_t head);
 
-int send_mesg(int sockfd, void *src, uint16_t type);
+int send_ERROR(int sockfd, CTP_ERROR_t mesg);
+int send_ACKCONNECT(int sockfd, CTP_ACKCONNECT_t mesg);
+int send_ACKOPEN(int sockfd, CTP_ACKOPEN_t mesg);
+int send_ACKLOCK(int sockfd, CTP_ACKLOCK_t mesg);
+int send_ACKEDIT(int sockfd, CTP_ACKEDIT_t mesg);
+int send_SERVRELEASE(int sockfd, CTP_SERVRELEASE_t mesg);
+int send_CONTENTS(int sockfd, CTP_CONTENTS_t mesg);
+int send_MOVE(int sockfd, CTP_MOVE_t mesg);
+int send_STATUS(int sockfd, CTP_STATUS_t mesg);
+int send_EDIT(int sockfd, CTP_EDIT_t mesg);
 
 #endif

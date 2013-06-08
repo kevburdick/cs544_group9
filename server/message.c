@@ -249,6 +249,21 @@ send_parts(int sockfd, CTP_head_t *head,
 }
 
 int
+send_ERROR(int sockfd, CTP_ERROR_t mesg)
+{
+    const size_t size = 2;
+
+    CTP_head_t head;
+
+    head.type = ERROR;
+    head.length = sizeof(head) + size + 0;
+
+    HTONS(mesg.error_code);
+
+    return send_parts(sockfd, &head, &mesg, size, NULL, 0);
+}
+
+int
 send_ACKCONNECT(int sockfd, CTP_ACKCONNECT_t mesg)
 {
     const size_t size = 4;
