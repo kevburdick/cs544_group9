@@ -4,7 +4,8 @@ Group 9: Kevin Burdick, Kevin Chang, Michael Conway, Haike Yuan
 We were unable to finish on time, but here is what is here:
 
 Files:
-client/               Client implementation (Java)
+client/                 Client implementation (Java)
+client README           Defines structure of client files and its server test stub
 
 The following are in a rough state, as all were abandoned before completion.
 server/               Initial attempt at server (C)
