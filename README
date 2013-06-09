@@ -1,0 +1,23 @@
+CS544 Spring 2012-13
+Group 9: Kevin Burdick, Kevin Chang, Michael Conway, Haike Yuan
+
+We were unable to finish on time, but here is what is here:
+
+Files:
+client/               Client implementation (Java)
+
+The following are in a rough state, as all were abandoned before completion.
+server/               Initial attempt at server (C)
+    CTP_server.{c,h}    Early server implementation (Haike Yuan)
+    parsing.c           Early message parsing (Haike Yuan)
+                        (based on misunderstanding of spec)
+    options.{c,h}       Option handling (Michael Conway)
+    message.{c,h}       Message parsing and sending (Michael Conway)
+    protocol.{c,h}      Protocol implementation (Michael Conway)
+    textbuf.{h,c}       Shared text "buffer" (Michael Conway)
+    makefile            Makefile (Michael Conway; next to nothing yet)
+
+To keep things simple, the server was planned to have a few shortcomings,
+namely no user authentication, and simple DoS attacks by clients that hold the
+lock indefinitely or stop a message midway through sending. These could be
+solved using timers and/or threads at the cost of complexity.
