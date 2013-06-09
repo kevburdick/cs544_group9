@@ -1,0 +1,26 @@
+The files in server/ are from the C version of the server that was unfinished
+when we decided to switch to Java to take advantage of a common codebase.
+However, they are listed in addition to the Java implementation so far for the
+elements they provide.
+
+STATEFUL:
+    client/StateMachine.java
+    server/protocol.{h,c}
+
+CONCURRENT:
+    A planned server/ctpd.c would maintain a list of clients (referenced in
+    server/protocol.h) and use epoll to wait for a message from any of them,
+    or from the listening socket. Some functions in protocol.c transmit to
+    other clients.
+
+SERVICE:
+    server/ctpd.c would have bound to port 5449 and waited for data on this
+    socket, as well as on the client sockets.
+
+CLIENT:
+    client/Client.java is a debugging/test application at the same layer as
+    the missing client application.
+
+UI:
+    client/Client.java is a debugging/test application at the same layer as
+    the missing client application (with UI).
