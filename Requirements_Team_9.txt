@@ -18,16 +18,18 @@ SERVICE:
     socket, as well as on the client sockets.
 
 CLIENT:
-    client/Client.java is a debugging/test UI at the same layer as
-    the missing client UI and provides the capability to call into the CTP 
-    protocol and receive information from the CTP protocol. It takes at the command line
-    the hostname or IP Address of the server. A selection menu is provided for debuging and 
-    testing purposes. An automated regression test is also provided to test with the Client Application 
-    and with a server test stub. The Client UI interfaces to the CTP protocol at the next layer 
-    in the stack. All messages in the protocol document are implemented per the specification 
-    with the exception of options which were not fully defined in the document. Messages were verified 
-    using Wireshark. Client application works as a single thread and contains a Response Timeout 
-    to prevent the client from hanging on a response.  
+    client/Client.java is a debugging/test UI at the same layer as the missing
+    client UI and provides the capability to call into the CTP protocol and
+    receive information from the CTP protocol. It takes at the command line
+    the hostname or IP Address of the server. A selection menu is provided for
+    debugging and testing purposes. An automated regression test is also
+    provided to test with the Client Application and with a server test stub.
+    The Client UI interfaces to the CTP protocol at the next layer in the
+    stack. All messages in the protocol document are implemented per the
+    specification with the exception of options which were not fully defined
+    in the document. Messages were verified using Wireshark. Client
+    application works as a single thread and contains a Response Timeout to
+    prevent the client from hanging on a response.  
 
 UI:
     client/Client.java is a debugging/test application at the same layer as
